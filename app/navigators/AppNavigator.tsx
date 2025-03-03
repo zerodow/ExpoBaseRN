@@ -10,10 +10,11 @@ import { observer } from "mobx-react-lite"
 import * as Screens from "@/screens"
 import Config from "../config"
 import { useStores } from "../models"
-import { DemoNavigator, DemoTabParamList } from "./DemoNavigator"
+import { DemoTabParamList } from "./DemoNavigator"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
-import { useAppTheme, useThemeProvider } from "@/utils/useAppTheme"
 import { ComponentProps } from "react"
+import { ThemeProvider } from "@/context/ThemeContext"
+import { useTheme } from "@/hooks/useTheme"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -55,26 +56,24 @@ const AppStack = observer(function AppStack() {
     authenticationStore: { isAuthenticated },
   } = useStores()
 
-  const {
-    theme: { colors },
-  } = useAppTheme()
+  const { theme } = useTheme()
 
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        navigationBarColor: colors.background,
+        navigationBarColor: theme.colors.background,
         contentStyle: {
-          backgroundColor: colors.background,
+          backgroundColor: theme.colors.background,
         },
       }}
       initialRouteName={isAuthenticated ? "Welcome" : "Login"}
     >
       {isAuthenticated ? (
         <>
-          <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} />
+          <Stack.Screen name="Welcome" component={Screens.LoginScreen} />
 
-          <Stack.Screen name="Demo" component={DemoNavigator} />
+          <Stack.Screen name="Demo" component={Screens.LoginScreen} />
         </>
       ) : (
         <>
@@ -91,14 +90,11 @@ const AppStack = observer(function AppStack() {
 export interface NavigationProps extends Partial<ComponentProps<typeof NavigationContainer>> {}
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
-  const { themeScheme, navigationTheme, setThemeContextOverride, ThemeProvider } =
-    useThemeProvider()
-
   useBackButtonHandler((routeName) => exitRoutes.includes(routeName))
 
   return (
-    <ThemeProvider value={{ themeScheme, setThemeContextOverride }}>
-      <NavigationContainer ref={navigationRef} theme={navigationTheme} {...props}>
+    <ThemeProvider>
+      <NavigationContainer ref={navigationRef} {...props}>
         <AppStack />
       </NavigationContainer>
     </ThemeProvider>

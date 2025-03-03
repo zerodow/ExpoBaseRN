@@ -62,9 +62,9 @@ reactotron.onCustomCommand({
 })
 
 reactotron.onCustomCommand({
-  title: "Reset Root Store",
-  description: "Resets the MST store",
-  command: "resetStore",
+  title: "Reset MMKV store",
+  description: "Reset MMKV store",
+  command: "resetMMKV",
   handler: () => {
     Reactotron.log("resetting store")
     clear()
