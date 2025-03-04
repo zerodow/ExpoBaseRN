@@ -1,16 +1,16 @@
 {
-  "name": "PizzaApp",
-  "displayName": "PizzaApp",
+  "name": "ExpoBaseRN",
+  "displayName": "ExpoBaseRN",
   "expo": {
-    "name": "PizzaApp",
-    "slug": "PizzaApp",
-    "scheme": "pizzaapp",
+    "name": "ExpoBaseRN",
+    "slug": "tk-application",
+    "scheme": "ExpoBaseRN",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "icon": "./assets/images/app-icon-all.png",
     "splash": {
-      "image": "./assets/images/splash-logo-all.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#191015"
     },
@@ -29,7 +29,7 @@
         "backgroundImage": "./assets/images/app-icon-android-adaptive-background.png"
       },
       "splash": {
-        "image": "./assets/images/splash-logo-android-universal.png",
+        "image": "./assets/images/splash.png",
         "resizeMode": "contain",
         "backgroundColor": "#191015"
       }
@@ -39,20 +39,11 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.pizzaapp",
       "splash": {
-        "image": "./assets/images/splash-logo-ios-mobile.png",
-        "tabletImage": "./assets/images/splash-logo-ios-tablet.png",
+        "image": "./assets/images/splash.png",
+        "tabletImage": "./assets/images/splash.png",
         "resizeMode": "contain",
         "backgroundColor": "#191015"
       }
-    },
-    "web": {
-      "favicon": "./assets/images/app-icon-web-favicon.png",
-      "splash": {
-        "image": "./assets/images/splash-logo-web.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#191015"
-      },
-      "bundler": "metro"
     },
     "plugins": [
       "expo-localization",
@@ -71,9 +62,12 @@
     ],
     "experiments": {
       "tsconfigPaths": true
-    }
-  },
-  "ignite": {
-    "version": "10.0.4"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7d5366c2-4b09-4f76-9d41-eb21b9db3816"
+      }
+    },
+    "owner": "kelvin_1611"
   }
 }
